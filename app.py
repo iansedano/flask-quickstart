@@ -1,4 +1,4 @@
-from flask import Flask, jsonify
+from flask import Flask, jsonify, request
 
 app = Flask(__name__)
 
@@ -13,3 +13,12 @@ def hello(name):
 @app.route('/person/')
 def hi():
     return jsonify({'name': 'Jimit', 'address':'India'})
+    
+@app.before_request
+def before():
+    print("Prepping!")
+    
+@app.route('/week/')
+def get_week():
+    print(request.data)
+    return "done"
